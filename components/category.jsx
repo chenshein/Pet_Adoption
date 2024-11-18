@@ -32,7 +32,7 @@ export default function CategoriesList({category}) {
     }
 
     return (
-        <View style={styles.container}>
+        <View>
             <Text style={styles.categoryText}>Category</Text>
             <FlatList
                 data={categoriesList}
@@ -60,10 +60,6 @@ export default function CategoriesList({category}) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        paddingHorizontal: 20,
-        paddingTop: 20,
-    },
     categoryText: {
         fontFamily: 'outfit-medium',
         fontSize: 30,
@@ -88,8 +84,8 @@ const styles = StyleSheet.create({
         shadowRadius: 6,
     },
     categoryImage: {
-        width: 60,
-        height: 60,
+        width: 40,
+        height: 40,
         borderRadius: 10,
     },
     categoryName: {

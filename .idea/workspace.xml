@@ -4,20 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="connect firebase">
-      <change afterPath="$PROJECT_DIR$/components/category.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/header.jsx" afterDir="false" />
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="home screen (category and sliders)">
+      <change afterPath="$PROJECT_DIR$/components/petDetailPage.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/components/petItem.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/petListByCategory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(tabs)/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Colors.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/slider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/slider.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/FirebaseConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/FirebaseConfig.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/category.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/petListByCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petListByCategory.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +91,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731773236948</updated>
-      <workItem from="1731773238621" duration="62367000" />
+      <workItem from="1731773238621" duration="70296000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -128,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731942561653</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="home screen (category and sliders)">
+      <created>1731960602505</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731960602505</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +139,7 @@
     <MESSAGE value="register and login page" />
     <MESSAGE value="bottom navigation" />
     <MESSAGE value="connect firebase" />
-    <option name="LAST_COMMIT_MESSAGE" value="connect firebase" />
+    <MESSAGE value="home screen (category and sliders)" />
+    <option name="LAST_COMMIT_MESSAGE" value="home screen (category and sliders)" />
   </component>
 </project>

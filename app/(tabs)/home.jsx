@@ -10,7 +10,6 @@ export default function Home() {
         <SafeAreaView style={styles.container}>
             <Header />
             <Slider />
-            {/*<CategoriesList/>*/}
             <PetListByCategory/>
         </SafeAreaView>
     );
