@@ -4,17 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="register and login page">
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/favorite.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/profile.jsx" afterDir="false" />
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="bottom navigation">
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/chat.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/slider.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/FirebaseConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/loginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/loginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/registerPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/registerPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/home_pic.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/Intro_pic.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -66,7 +62,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731773236948</updated>
-      <workItem from="1731773238621" duration="33634000" />
+      <workItem from="1731773238621" duration="46322000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -82,7 +78,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731845301297</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="bottom navigation">
+      <created>1731929491734</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731929491734</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,6 +94,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Home page and init project" />
     <MESSAGE value="register and login page" />
-    <option name="LAST_COMMIT_MESSAGE" value="register and login page" />
+    <MESSAGE value="bottom navigation" />
+    <option name="LAST_COMMIT_MESSAGE" value="bottom navigation" />
   </component>
 </project>

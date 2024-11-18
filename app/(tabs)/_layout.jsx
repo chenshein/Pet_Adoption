@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from './home';
 import Favorite from './favorite';
 import Profile from './profile';
+import Chat from './chat';
 import Colors from "../../assets/Colors";
 import { View, Text } from "react-native";
 
@@ -13,7 +14,7 @@ export default function TabLayout() {
         <Tab.Navigator
             screenOptions={{
                 headerShown: false,
-                tabBarShowLabel: true,
+                tabBarShowLabel: false,
                 tabBarStyle: {
                     position: "absolute",
                     bottom: 20,
@@ -50,7 +51,6 @@ export default function TabLayout() {
                             />
                         </View>
                     ),
-                    tabBarLabel: "Home",
                 }}
             />
 
@@ -67,7 +67,21 @@ export default function TabLayout() {
                             />
                         </View>
                     ),
-                    tabBarLabel: "Profile",
+                }}
+            />
+            <Tab.Screen
+                name="Chat"
+                component={Chat}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={{ alignItems: "center" }}>
+                            <Ionicons
+                                name={focused ? "chatbubbles" : "chatbubbles-outline"}
+                                color={focused ? Colors.primary : "gray"}
+                                size={24}
+                            />
+                        </View>
+                    ),
                 }}
             />
 
@@ -84,7 +98,6 @@ export default function TabLayout() {
                             />
                         </View>
                     ),
-                    tabBarLabel: "Favorite",
                 }}
             />
         </Tab.Navigator>
