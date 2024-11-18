@@ -1,13 +1,24 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
 import Slider from "../../components/slider";
+import Header from "../../components/header";
+import CategoriesList from "../../components/category";
+import PetListByCategory from "../../components/petListByCategory";
 
 export default function Home() {
     return (
-        <View >
-            <Slider></Slider>
-
-        </View>
+        <SafeAreaView style={styles.container}>
+            <Header />
+            <Slider />
+            {/*<CategoriesList/>*/}
+            <PetListByCategory/>
+        </SafeAreaView>
     );
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        paddingTop: 20,
+    },
+});

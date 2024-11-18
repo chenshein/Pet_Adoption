@@ -7,7 +7,7 @@ export default function Slider() {
 
     useEffect(() => {
         getSliders();
-    }, []);
+    }, );
 
     async function getSliders() {
         try {
@@ -17,7 +17,6 @@ export default function Slider() {
                 sliders.push(doc.data());
             });
             setSlidersList(sliders);
-            console.log("Firestore read operation successful.");
         } catch (error) {
             console.error("Error accessing Firestore:", error);
         }
@@ -29,10 +28,9 @@ export default function Slider() {
                       horizontal={true}
                       renderItem={({item,index})=>(
                 <View>
-                    <Image source={item.imgURL} style={styles.sliderImg}></Image>
+                    <Image source={{uri: item.imgURL}} style={styles.sliderImg}></Image>
                 </View>
             )}>
-
             </FlatList>
         </View>
     );
@@ -41,6 +39,7 @@ export default function Slider() {
 const styles = StyleSheet.create({
     sliderImg:{
         width:Dimensions.get('screen').width * 0.9,
-        height: 160
+        height: 160,
+        borderRadius:20,
     }
 })

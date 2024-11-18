@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="bottom navigation">
-      <change afterPath="$PROJECT_DIR$/app/(tabs)/chat.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/slider.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/FirebaseConfig.js" afterDir="false" />
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="connect firebase">
+      <change afterPath="$PROJECT_DIR$/components/category.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/header.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/petItem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/petListByCategory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(tabs)/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Colors.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/slider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/slider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/FirebaseConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/FirebaseConfig.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -36,7 +41,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/אישי/תמונות",
+    "last_opened_file_path": "C:/Users/User/OneDrive/שולחן העבודה/חן פרויקטים/pet_adoption/app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -47,12 +52,43 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\assets\images" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\components" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\assets\fonts" />
     </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="ios" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="ios" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.ios" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -62,7 +98,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731773236948</updated>
-      <workItem from="1731773238621" duration="46322000" />
+      <workItem from="1731773238621" duration="62367000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -85,7 +121,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731929491734</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="connect firebase">
+      <created>1731942561653</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731942561653</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +138,7 @@
     <MESSAGE value="Home page and init project" />
     <MESSAGE value="register and login page" />
     <MESSAGE value="bottom navigation" />
-    <option name="LAST_COMMIT_MESSAGE" value="bottom navigation" />
+    <MESSAGE value="connect firebase" />
+    <option name="LAST_COMMIT_MESSAGE" value="connect firebase" />
   </component>
 </project>

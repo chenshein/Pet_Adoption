@@ -6,6 +6,7 @@ export default function RootLayout() {
         'outfit': require('../assets/fonts/SourGummy-Regular.ttf'),
         'outfit-medium': require('../assets/fonts/SourGummy-Medium.ttf'),
         'outfit-bold': require('../assets/fonts/SourGummy-Bold.ttf'),
+        'outfit-light': require('../assets/fonts/SourGummy_Expanded-Light.ttf')
     });
 
     if (!fontsLoaded) {
