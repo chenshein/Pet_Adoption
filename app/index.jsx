@@ -4,7 +4,7 @@ import Colors from '../assets/Colors'
 import {Link, router, useRouter} from "expo-router";
 
 export default function Index() {
-    let home_img = require('../assets/images/home_pic.png');
+    let Intro_img = require('../assets/images/Intro_pic.png');
     const router = useRouter();
     const handleLoginPress = () => {
         router.push('/loginPage');
@@ -16,10 +16,10 @@ export default function Index() {
         <SafeAreaView style={styles.container}>
             <View style={styles.content}>
 
-                {/* Home Img */}
+                {/* Index Img */}
                 <View style={styles.imgContainer}>
                     <Image
-                        source={home_img}
+                        source={Intro_img}
                         style={styles.imgContainer}
                         resizeMode="contain"
                     />

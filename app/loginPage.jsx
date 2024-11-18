@@ -8,9 +8,10 @@ import {
     StyleSheet,
 } from 'react-native';
 import React, { useState } from 'react';
-import Colors from '../assets/Colors'; // Ensure that this import is correct and Colors is properly defined
+import Colors from '../assets/Colors';
 import { useRouter } from 'expo-router';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { useUser } from '@clerk/clerk-react';
 
 export default function LoginPage() {
     const [username, setUsername] = useState('');
@@ -18,7 +19,11 @@ export default function LoginPage() {
     const router = useRouter();
 
     function handleLogin() {
-        //TODO handle login
+        //TODO handle login- check if the person exist and the username & password
+
+
+        router.replace('/(tabs)/home'); // route after login
+
     }
 
     return (
