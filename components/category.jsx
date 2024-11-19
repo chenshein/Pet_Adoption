@@ -26,7 +26,7 @@ export default function CategoriesList({category}) {
         }
     }
 
-    function handlePress(name) { //TODO handle press to show the wanted pet
+    function handlePress(name) {
         setSelectedCategory(name);
         category(name);
     }

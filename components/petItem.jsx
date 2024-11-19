@@ -1,15 +1,16 @@
-import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity, Button} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import Colors from "../assets/Colors"; // Replace with your custom Colors file
-
+import Colors from "../assets/Colors";
+import {useRouter} from "expo-router"; // Replace with your custom Colors file
 export default function PetItem({ pet }) {
-    return (
-        <TouchableOpacity style={styles.itemContainer}>
-            {/* Image Section */}
-            <View style={styles.imgContainer}>
-                <Image source={{ uri: pet.imgURL }} style={styles.petImage} />
 
+    const router = useRouter();
+    return (
+        <TouchableOpacity style={styles.itemContainer} onPress={()=>router.push({pathname:'/petDetails', params:pet})}>
+            {/* Image Section */}
+            <View style={styles.imgContainer} >
+                <Image source={{ uri: pet.imgURL }} style={styles.petImage} />
                 {/* Info Section Overlaid */}
                 <View style={styles.infoOverlay}>
                     <Text style={styles.petName}>{pet.name}</Text>
@@ -27,6 +28,9 @@ export default function PetItem({ pet }) {
                         </View>
                         <Text style={styles.detailText}>{pet.age}</Text>
                     </View>
+
+                    {/*<Button title={"TEST"} onPress={()=>navigation.navigate("Index")}></Button>*/}
+
                 </View>
             </View>
 

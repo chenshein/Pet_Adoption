@@ -4,13 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="pets list by categories">
-      <change afterPath="$PROJECT_DIR$/components/petItem.jsx" afterDir="false" />
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="design petItem">
+      <change afterPath="$PROJECT_DIR$/assets/fonts/SourGummy-ExtraLightItalic.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/SourGummy-Light.ttf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/SourGummy_Expanded-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/SourGummy_Expanded-SemiBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/fonts/SourGummy_SemiExpanded-ExtraBold.ttf" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/petDetailPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petDetailPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/petListByCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petListByCategory.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/slider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/slider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/petDetailPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/petDetails/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/petItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petItem.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +38,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/User/OneDrive/שולחן העבודה/חן פרויקטים/pet_adoption/app",
+    "last_opened_file_path": "C:/Users/User/OneDrive/שולחן העבודה/חן פרויקטים/pet_adoption/assets/fonts",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -46,9 +50,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\assets\fonts" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app\petDetails" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\assets\images" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\components" />
@@ -91,7 +97,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731773236948</updated>
-      <workItem from="1731773238621" duration="77490000" />
+      <workItem from="1731773238621" duration="89860000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -135,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1731968999100</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="design petItem">
+      <created>1732020200845</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732020200845</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,6 +161,7 @@
     <MESSAGE value="connect firebase" />
     <MESSAGE value="home screen (category and sliders)" />
     <MESSAGE value="pets list by categories" />
-    <option name="LAST_COMMIT_MESSAGE" value="pets list by categories" />
+    <MESSAGE value="design petItem" />
+    <option name="LAST_COMMIT_MESSAGE" value="design petItem" />
   </component>
 </project>
