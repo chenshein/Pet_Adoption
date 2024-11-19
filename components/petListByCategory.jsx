@@ -30,14 +30,13 @@ export default function PetListByCategory() {
     return (
         <View style={styles.container}>
             <CategoriesList category={(value) => getPetList(value)} />
-            <Text style={styles.text}>Adopt Pet</Text>
+            {/*<Text style={styles.text}>Adopt Pet</Text>*/}
             <FlatList
                 data={categoryPetList}
                 renderItem={({ item }) => <PetItem pet={item} />}
-                keyExtractor={(item, index) => index.toString()}
-                horizontal={true}  // Makes the list horizontal
-                showsHorizontalScrollIndicator={false}  // Optional, hides the scrollbar
-                contentContainerStyle={styles.listContent} // Ensures spacing and alignment
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}  // hides the scrollbar
+                contentContainerStyle={styles.listContent}
             />
         </View>
     );
@@ -48,15 +47,16 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         paddingTop: 20,
     },
-
-    text: {
-        fontFamily: 'outfit-medium',
-        fontSize: 30,
-        marginBottom: 10,
-        marginTop: 20
-    },
+    //
+    // text: {
+    //     fontFamily: 'outfit-medium',
+    //     fontSize: 30,
+    //     marginBottom: 10,
+    //     marginTop: 20
+    // },
 
     listContent: {
         paddingHorizontal: 10,
-    }
+        paddingTop:30,
+    },
 });

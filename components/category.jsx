@@ -33,7 +33,7 @@ export default function CategoriesList({category}) {
 
     return (
         <View>
-            <Text style={styles.categoryText}>Category</Text>
+            <Text style={styles.categoryText}>Categories</Text>
             <FlatList
                 data={categoriesList}
                 horizontal={true}
@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
         shadowRadius: 6,
     },
     categoryImage: {
-        width: 40,
-        height: 40,
+        width: 50,
+        height: 50,
         borderRadius: 10,
     },
     categoryName: {
