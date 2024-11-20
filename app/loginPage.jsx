@@ -3,7 +3,6 @@ import {
     Text,
     TextInput,
     TouchableOpacity,
-    SafeAreaView,
     Image,
     StyleSheet,
 } from 'react-native';
@@ -11,42 +10,60 @@ import React, { useState } from 'react';
 import Colors from '../assets/Colors';
 import { useRouter } from 'expo-router';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { useUser } from '@clerk/clerk-react';
+import { auth } from '../config/FirebaseConfig';
 
 export default function LoginPage() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const router = useRouter();
 
     function handleLogin() {
-        //TODO handle login- check if the person exist and the username & password
-
-
-        router.replace('/(tabs)/home'); // route after login
-
+        if (!email || !password) {
+            alert("Please enter both email and password");
+            return;
+        }
+        auth.signInWithEmailAndPassword(email, password)
+            .then((userCredential) => {
+                // login successful
+                const user = userCredential.user;
+                console.log("Logged in as: ", user.email);
+                router.replace('/(tabs)/home');
+            })
+            //login failed
+            .catch(error => {
+                if (error.code === 'auth/email-already-in-use') {
+                    alert('That email address is already in use!');
+                }
+                if (error.code === 'auth/invalid-email') {
+                    alert('That email address is invalid!');
+                }
+                console.error('error is:',error);
+            });
     }
 
     return (
         <View style={styles.container}>
-            <SafeAreaView style={styles.headerContainer}>
+            <View style={styles.headerContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-                    <Icon name="arrow-back" size={30} color="white" />
+                    <Icon name="arrow-back" size={30} color='#C400FF' />
                 </TouchableOpacity>
                 <View style={styles.imgContainer}>
                     <Image
-                        source={require('../assets/images/login_pic.png')}
+                        source={require('../assets/images/loginImg.jpg')}
                         style={styles.image}
+                        resizeMode="contain"
+
                     />
                 </View>
-            </SafeAreaView>
+            </View>
 
             <View style={styles.formContainer}>
                 <View>
                     <TextInput
                         style={styles.input}
-                        placeholder="Username"
-                        value={username}
-                        onChangeText={setUsername}
+                        placeholder="Email"
+                        value={email}
+                        onChangeText={setEmail}
                     />
                     <TextInput
                         style={styles.input}
@@ -78,7 +95,7 @@ export default function LoginPage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.light_pink,
+        backgroundColor: Colors.white,
     },
     headerContainer: {
         flex: 1,
@@ -93,13 +110,15 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: Colors.darkPurple,
+        backgroundColor: '#f8f2f2',
         justifyContent: 'center',
         alignItems: 'center',
     },
     imgContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
+        marginTop:60
+
     },
     image: {
         width: 350,
@@ -107,14 +126,14 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: '#f8f2f2',
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
         padding: 32,
     },
     input: {
         padding: 16,
-        backgroundColor: '#F3F4F6',
+        backgroundColor: Colors.white,
         borderRadius: 16,
         marginBottom: 5,
         marginTop: 8,
@@ -141,7 +160,7 @@ const styles = StyleSheet.create({
         fontFamily: 'outfit-medium'
     },
     registerLink:{
-        color: Colors.primary,
+        color: Colors.darkBlue,
         fontSize:17,
         textDecorationLine: 'underline',
         fontFamily: 'outfit-medium'

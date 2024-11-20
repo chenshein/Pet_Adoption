@@ -4,52 +4,68 @@ import {
     TextInput,
     TouchableOpacity,
     StyleSheet,
-    SafeAreaView,
     Image
 } from 'react-native';
 import React, { useState } from 'react';
 import Colors from '../assets/Colors';
 import { useRouter } from 'expo-router';
 import Icon from "react-native-vector-icons/Ionicons";
+import { auth } from '../config/FirebaseConfig';
 
 export default function Register() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const router = useRouter();
 
-    const handleRegister = () => {
-        if (password !== confirmPassword) {
-            alert("Passwords do not match!");
-            return;
+    function handleRegister() {
+        if (email && password && confirmPassword) {
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    const user = userCredential.user;
+                    console.log('User registered successfully: ', user);
+                    alert("Registration Successful");
+                    router.push('/loginPage');
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error('Registration error:', errorCode, errorMessage);
+                    alert(`Error: ${errorMessage}`);
+                });
+        } else {
+            alert("Please fill all fields.");
         }
+    }
 
-        // registration is successful
-        alert("Registration Successful");
-        router.push('/loginPage'); // Redirect to login page after successful registration
-    };
 
     return (
         <View style={styles.container}>
-            <SafeAreaView style={styles.headerContainer}>
+            <View style={styles.headerContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-                    <Icon name="arrow-back" size={30} color="white" />
+                    <Icon name="arrow-back" size={30} color="#C400FF" />
                 </TouchableOpacity>
                 <View style={styles.imgContainer}>
                     <Image
-                        source={require('../assets/images/register_pic.png')}
+                        source={require('../assets/images/registerImg.jpg')}
                         style={styles.image}
+                        resizeMode="contain"
                     />
                 </View>
-            </SafeAreaView>
+            </View>
 
             <View style={styles.formContainer}>
                 <View>
                     <TextInput
                         style={styles.input}
-                        placeholder="Username"
-                        value={username}
-                        onChangeText={setUsername}
+                        placeholder="Email"
+                        value={email}
+                        onChangeText={setEmail}
                     />
                     <TextInput
                         style={styles.input}
@@ -88,7 +104,7 @@ export default function Register() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.light_pink,
+        backgroundColor:'#f8f2f2',
     },
     headerContainer: {
         flex: 1,
@@ -103,13 +119,14 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: Colors.darkPurple,
+        backgroundColor: Colors.white,
         justifyContent: 'center',
         alignItems: 'center',
     },
     imgContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
+        marginTop:60
     },
     image: {
         width: 350,
@@ -117,14 +134,14 @@ const styles = StyleSheet.create({
     },
     formContainer: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: Colors.white,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
         padding: 32,
     },
     input: {
         padding: 16,
-        backgroundColor: '#F3F4F6',
+        backgroundColor: '#f4f4f6',
         borderRadius: 16,
         marginBottom: 5,
         marginTop: 8,
@@ -134,7 +151,7 @@ const styles = StyleSheet.create({
     registerButton: {
         marginTop:10,
         padding: 15,
-        backgroundColor: Colors.darkPurple,
+        backgroundColor: Colors.primary,
         borderRadius: 16,
     },
     registerButtonText: {
@@ -151,7 +168,7 @@ const styles = StyleSheet.create({
         fontFamily: 'outfit-medium'
     },
     loginLink:{
-        color: Colors.primary,
+        color: Colors.darkBlue,
         fontSize:17,
         textDecorationLine: 'underline',
         fontFamily: 'outfit-medium'

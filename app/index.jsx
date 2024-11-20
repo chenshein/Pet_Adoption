@@ -1,54 +1,99 @@
-import {View, Text, Image, TextInput, TouchableOpacity, StyleSheet, SafeAreaView, Button} from 'react-native';
-import React, { useState } from 'react';
-import Colors from '../assets/Colors'
-import {Link, router, useRouter} from "expo-router";
+import {
+    View,
+    Text,
+    Image,
+    TouchableOpacity,
+    StyleSheet,
+    SafeAreaView,
+    FlatList,
+    Dimensions,
+} from 'react-native';
+import React, {useState} from 'react';
+import Colors from '../assets/Colors';
+import { useRouter } from 'expo-router';
 
 export default function Index() {
-    let Intro_img = require('../assets/images/Intro_pic.png');
     const router = useRouter();
+    const [currentIndexSlider, setCurrentIndexSlider] = useState(0);
+
+    const introSliderImg = [
+        { id: 1, sourceImg: require('../assets/images/Slider1.png') },
+        { id: 2, sourceImg: require('../assets/images/Slider2.png') },
+        { id: 3, sourceImg: require('../assets/images/Slider3.png') },
+    ];
+
     const handleLoginPress = () => {
         router.push('/loginPage');
     };
+
     const handleRegisterPress = () => {
         router.push('/registerPage');
     };
+
+    // when user slide the img
+    const onScroll = (event) => {
+        const contentOffsetX = event.nativeEvent.contentOffset.x;
+        const index = Math.floor(contentOffsetX / Dimensions.get('window').width);
+        setCurrentIndexSlider(index);
+    };
+
+    const renderDots = () => {
+        return introSliderImg.map((_, index) => (
+            <View
+                key={index}
+                style={[
+                    styles.dot,
+                    index === currentIndexSlider && styles.activeDot,
+                ]}
+            />
+        ));
+    };
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.content}>
+            <FlatList
+                data={introSliderImg}
+                renderItem={({item})=>(
+                    <View style={styles.imgContainer}>
+                        <Image
+                            source={item.sourceImg}
+                            style={styles.img}
+                            resizeMode="contain"
+                        />
+                    </View>
+                )}
+                keyExtractor={(item) => item.id.toString()}
+                onScroll={(event) => onScroll(event)}
+                horizontal
+                pagingEnabled
+                showsHorizontalScrollIndicator={false}
+                style={styles.sliderContainer}
+            />
 
-                {/* Index Img */}
-                <View style={styles.imgContainer}>
-                    <Image
-                        source={Intro_img}
-                        style={styles.imgContainer}
-                        resizeMode="contain"
-                    />
-                </View>
-
-                {/* Text content */}
-                <View style={styles.textContainer}>
-                    <Text style={styles.title}>Make new Friends</Text>
-                    <Text style={styles.subtitle}>
-                        Here you can meet your dream friend and joy with them!
-                    </Text>
-                </View>
-
-                {/* Navigation buttons */}
-                <View style={styles.navigationContainer}>
-                    <TouchableOpacity
-                        style={styles.registerButton}
-                        onPress={handleRegisterPress}>
-                        <Text style={styles.registerButtonText}>Register</Text>
-                    </TouchableOpacity>
-
-                    {/* Login button */}
-                    <TouchableOpacity
-                        style={styles.loginButton}
-                        onPress={handleLoginPress} // OnPress event for login button
-                    >
-                        <Text style={styles.loginButtonText}>Login</Text>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.dotsContainer}>{renderDots()}</View>
+            <View style={styles.textContainer}>
+                <Text style={[styles.title, { color: Colors.darkPurple }]}>
+                    Find a New
+                </Text>
+                <Text style={[styles.title, { color: Colors.primary }]}>
+                    Friend For You
+                </Text>
+                <Text style={styles.subtitle}>
+                    Meet your dream friend and create joyful memories together!
+                </Text>
+            </View>
+            <View style={styles.navigationContainer}>
+                <TouchableOpacity
+                    style={[styles.button, styles.registerButton]}
+                    onPress={handleRegisterPress}
+                >
+                    <Text style={styles.registerButtonText}>Register</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={[styles.button, styles.loginButton]}
+                    onPress={handleLoginPress}
+                >
+                    <Text style={styles.loginButtonText}>Login</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     );
@@ -57,15 +102,15 @@ export default function Index() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Colors.primary,
+        backgroundColor: Colors.white,
     },
-    content: {
-        flex: 1,
-        padding: 20,
-        justifyContent: 'space-between',
+    sliderContainer: {
+        flexGrow: 1,
+        marginTop:70
     },
     imgContainer: {
-        flex: 3,
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.4,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -74,54 +119,77 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     textContainer: {
-        flex: 1,
-        alignItems: 'center',
         padding: 20,
+        alignItems: 'center',
     },
     title: {
         fontSize: 28,
-        fontWeight: 'bold',
-        color: Colors.white,
-        marginBottom: 10,
+        fontWeight: '700',
+        textAlign: 'center',
         fontFamily: 'outfit-bold',
     },
     subtitle: {
-        fontSize: 18,
-        color: Colors.white,
+        fontSize: 16,
+        color: Colors.lightGray,
         textAlign: 'center',
-        opacity: 0.8,
+        marginTop: 10,
+        lineHeight: 24,
         fontFamily: 'outfit',
     },
     navigationContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         alignItems: 'center',
+        marginVertical: 30,
         paddingHorizontal: 20,
-        marginBottom: 20,
+    },
+    button: {
+        paddingVertical: 15,
+        paddingHorizontal: 40,
+        borderRadius: 25,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.1,
+        shadowRadius: 5,
+        elevation: 2,
     },
     registerButton: {
-        backgroundColor: 'white',
-        paddingHorizontal: 40,
-        paddingVertical: 10,
-        borderRadius: 20,
-
+        backgroundColor: Colors.white,
     },
     registerButtonText: {
         color: Colors.primary,
-        fontSize: 18,
+        fontSize: 16,
+        fontWeight: '600',
+        textAlign: 'center',
         fontFamily: 'outfit',
-
     },
     loginButton: {
-        backgroundColor: 'white',
-        paddingHorizontal: 40,
-        paddingVertical: 10,
-        borderRadius: 20,
+        backgroundColor: Colors.primary,
+        borderColor: Colors.primary,
+        borderWidth: 1,
     },
     loginButtonText: {
-        color: Colors.primary,
-        fontSize: 18,
+        color: Colors.white,
+        fontSize: 16,
+        fontWeight: '600',
+        textAlign: 'center',
         fontFamily: 'outfit',
     },
-});
 
+    dotsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 20,
+    },
+    dot: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        margin: 5,
+        backgroundColor: Colors.lightGray,
+    },
+    activeDot: {
+        backgroundColor: Colors.primary,
+    },
+});

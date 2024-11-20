@@ -1,8 +1,7 @@
-import firebase from 'firebase/compat/app'; // Use the compat version
-import 'firebase/compat/analytics'; // For analytics
-import 'firebase/compat/firestore'; // For Firestore
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore'; // Add other services if needed
 
-// Initialize Firebase
 const firebaseConfig = {
     apiKey: "AIzaSyDtS7D7y3rn0hkwvxL9IwVIbJcjO_YYLdM",
     authDomain: "pet-adoption-575a8.firebaseapp.com",
@@ -14,12 +13,12 @@ const firebaseConfig = {
     databaseURL: "https://pet-adoption-575a8.firebaseio.com"
 };
 
-// Initialize Firebase app
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
     console.log('Firebase Initialized');
+} else {
+    console.log('Firebase already initialized');
 }
 
-// Firestore database reference
-export const db = firebase.firestore();  // Use firebase.firestore() for Firestore
-console.log('Firestore db:', db);  // Check if db is a valid Firestore instance
+export const auth = firebase.auth();
+export const db = firebase.firestore();

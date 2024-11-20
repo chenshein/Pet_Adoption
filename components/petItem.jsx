@@ -35,9 +35,9 @@ export default function PetItem({ pet }) {
             </View>
 
             {/* Heart Icon */}
-            <View style={styles.heartContainer}>
+            <TouchableOpacity style={styles.heartContainer}>
                 <Ionicons name="heart-outline" size={24} color={Colors.primary} />
-            </View>
+            </TouchableOpacity>
         </TouchableOpacity>
     );
 }

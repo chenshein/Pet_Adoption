@@ -6,9 +6,9 @@ const Colors = {
     lightGray: '#757575',
     darkPurple:'#782f86',
     darkBlue: '#17A2B8',
+    darkGrey: '#404549',
 
 
-    secondary: '#6C757D',
     success: '#f0e4fa',
     danger: '#DC3545',
     warning: '#FFC107',
