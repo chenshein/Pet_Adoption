@@ -4,29 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="pet details page">
-      <change afterPath="$PROJECT_DIR$/app/hooks/useAuth.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/fonts/SourGummy-ExtraLightItalic.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/fonts/SourGummy-Light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/loginImg.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/images/registerImg.jpg" afterDir="false" />
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="login and register - connect to firebase + logout">
+      <change afterPath="$PROJECT_DIR$/shared/shared.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/favorite.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/favorite.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/loginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/loginPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/registerPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/registerPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Colors.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/SourGummy_Expanded-Light.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/SourGummy_Expanded-SemiBoldItalic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/fonts/SourGummy_SemiExpanded-ExtraBold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/Intro_pic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/login_pic.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/register_pic.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/category.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/petItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/FirebaseConfig.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/FirebaseConfig.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,22 +31,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/User/OneDrive/שולחן העבודה/חן פרויקטים/pet_adoption/assets/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Users\\User\\OneDrive\\שולחן העבודה\\חן פרויקטים\\pet_adoption\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/OneDrive/שולחן העבודה/חן פרויקטים/pet_adoption/assets/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\User\\OneDrive\\שולחן העבודה\\חן פרויקטים\\pet_adoption\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\assets\images" />
@@ -110,7 +97,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1731773236948</updated>
-      <workItem from="1731773238621" duration="110594000" />
+      <workItem from="1731773238621" duration="121091000" />
+      <workItem from="1732216954097" duration="4255000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -168,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732048669562</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="login and register - connect to firebase + logout">
+      <created>1732114099495</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732114099496</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -183,6 +178,7 @@
     <MESSAGE value="pets list by categories" />
     <MESSAGE value="design petItem" />
     <MESSAGE value="pet details page" />
-    <option name="LAST_COMMIT_MESSAGE" value="pet details page" />
+    <MESSAGE value="login and register - connect to firebase + logout" />
+    <option name="LAST_COMMIT_MESSAGE" value="login and register - connect to firebase + logout" />
   </component>
 </project>

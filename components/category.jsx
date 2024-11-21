@@ -11,7 +11,8 @@ export default function CategoriesList({category}) {
 
     useEffect(() => {
         getCategories();
-    }, );
+        handlePress(selectedCategory)
+    }, []);
 
     async function getCategories() {
         try {
@@ -51,7 +52,6 @@ export default function CategoriesList({category}) {
                             </View>
                             <Text style={styles.categoryName}>{item.name}</Text>
                         </View>
-
                     </TouchableOpacity>
                 )}
             />

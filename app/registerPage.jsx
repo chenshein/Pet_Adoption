@@ -13,24 +13,36 @@ import Icon from "react-native-vector-icons/Ionicons";
 import { auth } from '../config/FirebaseConfig';
 
 export default function Register() {
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const router = useRouter();
 
     function handleRegister() {
-        if (email && password && confirmPassword) {
+        if (email && password && confirmPassword && username) {
             if (password !== confirmPassword) {
                 alert("Passwords do not match!");
                 return;
             }
             auth.createUserWithEmailAndPassword(email, password)
                 .then((userCredential) => {
-                    // Signed in
                     const user = userCredential.user;
                     console.log('User registered successfully: ', user);
-                    alert("Registration Successful");
-                    router.push('/loginPage');
+
+                    // update user profile with the username
+                    user.updateProfile({
+                        displayName: username,
+                    })
+                        .then(() => {
+                            console.log('User profile updated');
+                            alert("Registration Successful");
+                            router.push('/loginPage');
+                        })
+                        .catch((error) => {
+                            console.error('Error updating profile:', error);
+                            alert(`Error: ${error.message}`);
+                        });
                 })
                 .catch((error) => {
                     const errorCode = error.code;
@@ -63,7 +75,15 @@ export default function Register() {
                 <View>
                     <TextInput
                         style={styles.input}
+                        placeholder="Full Name"
+                        placeholderTextColor={Colors.lightGray}
+                        value={username}
+                        onChangeText={setUsername}
+                    />
+                    <TextInput
+                        style={styles.input}
                         placeholder="Email"
+                        placeholderTextColor={Colors.lightGray}
                         value={email}
                         onChangeText={setEmail}
                     />
@@ -71,6 +91,7 @@ export default function Register() {
                         style={styles.input}
                         secureTextEntry
                         placeholder="Password"
+                        placeholderTextColor={Colors.lightGray}
                         value={password}
                         onChangeText={setPassword}
                     />
@@ -78,6 +99,7 @@ export default function Register() {
                         style={styles.input}
                         secureTextEntry
                         placeholder="Confirm Password"
+                        placeholderTextColor={Colors.lightGray}
                         value={confirmPassword}
                         onChangeText={setConfirmPassword}
                     />

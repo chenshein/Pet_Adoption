@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, StyleSheet, Button, TouchableOpacity, Dimensions} from 'react-native';
 import { auth } from '../config/FirebaseConfig';
 import {useRouter} from "expo-router";
@@ -7,6 +7,11 @@ import {Ionicons} from "@expo/vector-icons";
 
 export default function Header() {
     const router = useRouter();
+    const [currentUser,setCurrentUser]=useState('')
+    useEffect(()=>{
+        const user = auth.currentUser;
+        setCurrentUser(user.displayName);
+    },);
     function handleLogout() {
         auth.signOut()
             .then(() => {
@@ -20,7 +25,7 @@ export default function Header() {
 
     return (
         <View style={styles.headerRow}>
-            <Text  style={styles.welcomeText}> Welcome, </Text>
+            <Text  style={styles.welcomeText}> Welcome, {currentUser}</Text>
             <TouchableOpacity style= {styles.btn} onPress={handleLogout} >
                 <Ionicons name="log-out-outline" size={25} color={'white'} style={{marginLeft:3}}></Ionicons>
             </TouchableOpacity>
