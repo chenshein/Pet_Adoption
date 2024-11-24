@@ -3,9 +3,11 @@ import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react
 import {useLocalSearchParams} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
 import Colors from "../../assets/Colors";
+import { useRouter } from 'expo-router';
 
 export default function PetDetails() {
     const pet = useLocalSearchParams();
+    const router = useRouter();
 
     return (
         <View style={styles.container}>
@@ -50,7 +52,12 @@ export default function PetDetails() {
                     <Text style={styles.aboutText}>{pet.about}</Text>
                 </View>
                 {/* Call-to-Action Button */}
-                <TouchableOpacity style={styles.adoptButton}>
+                <TouchableOpacity style={styles.adoptButton}
+                                  onPress={()=> {
+                                      router.push(`/chat?ownerEmail=${encodeURIComponent(pet.owner)}`);
+                }}>
+
+
                     <Text style={styles.adoptButtonText}>Adopt Me</Text>
                 </TouchableOpacity>
             </View>

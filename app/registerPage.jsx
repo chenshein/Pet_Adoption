@@ -10,7 +10,8 @@ import React, { useState } from 'react';
 import Colors from '../assets/Colors';
 import { useRouter } from 'expo-router';
 import Icon from "react-native-vector-icons/Ionicons";
-import { auth } from '../config/FirebaseConfig';
+import { auth,db } from '../config/FirebaseConfig';
+import {doc, setDoc} from "firebase/firestore";
 
 export default function Register() {
     const [username, setUsername] = useState('');
@@ -19,41 +20,61 @@ export default function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const router = useRouter();
 
-    function handleRegister() {
+
+    async function addToDB() {
+        console.log("Adding user to DB...");
+        try {
+            await setDoc(doc(db, "Users", email), {
+                email: email,
+                displayName: username,
+            });
+            console.log("User added to Firestore successfully");
+        } catch (error) {
+            console.error("Error adding user to DB:", error);
+        }
+    }
+
+    async function handleRegister() {
         if (email && password && confirmPassword && username) {
             if (password !== confirmPassword) {
                 alert("Passwords do not match!");
                 return;
             }
-            auth.createUserWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    console.log('User registered successfully: ', user);
 
-                    // update user profile with the username
-                    user.updateProfile({
-                        displayName: username,
-                    })
-                        .then(() => {
-                            console.log('User profile updated');
-                            alert("Registration Successful");
-                            router.push('/loginPage');
+            try {
+                await addToDB();
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        const user = userCredential.user;
+                        console.log('User registered successfully: ', user);
+
+                        user.updateProfile({
+                            displayName: username,
                         })
-                        .catch((error) => {
-                            console.error('Error updating profile:', error);
-                            alert(`Error: ${error.message}`);
-                        });
-                })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    console.error('Registration error:', errorCode, errorMessage);
-                    alert(`Error: ${errorMessage}`);
-                });
+                            .then(() => {
+                                console.log('User profile updated');
+                                alert("Registration Successful");
+                                router.push('/loginPage');
+                            })
+                            .catch((error) => {
+                                console.error('Error updating profile:', error);
+                                alert(`Error: ${error.message}`);
+                            });
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        console.error('Registration error:', errorCode, errorMessage);
+                        alert(`Error: ${errorMessage}`);
+                    });
+            } catch (error) {
+                console.error("Error adding to DB: ", error);
+            }
         } else {
             alert("Please fill all fields.");
         }
     }
+
 
 
     return (

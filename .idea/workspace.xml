@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="login and register - connect to firebase + logout">
-      <change afterPath="$PROJECT_DIR$/shared/shared.jsx" afterDir="false" />
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="favorite page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/favorite.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/favorite.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/loginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/loginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/petDetails/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/petDetails/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/registerPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/registerPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/category.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/category.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/petItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/slider.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/slider.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,9 +19,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectId" id="2owGU2CzCukgxyhSQgLdGR9Qazm" />
   <component name="ProjectViewState">
@@ -99,6 +100,8 @@
       <updated>1731773236948</updated>
       <workItem from="1731773238621" duration="121091000" />
       <workItem from="1732216954097" duration="4255000" />
+      <workItem from="1732388536744" duration="571000" />
+      <workItem from="1732391924283" duration="8134000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -168,6 +171,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Home page and init project" />
