@@ -4,6 +4,7 @@ import {useLocalSearchParams} from "expo-router";
 import {Ionicons} from "@expo/vector-icons";
 import Colors from "../../assets/Colors";
 import { useRouter } from 'expo-router';
+import {auth} from "../../config/FirebaseConfig";
 
 export default function PetDetails() {
     const pet = useLocalSearchParams();
@@ -51,14 +52,22 @@ export default function PetDetails() {
                     <Text style={styles.aboutName}>About {pet.name},</Text>
                     <Text style={styles.aboutText}>{pet.about}</Text>
                 </View>
+
                 {/* Call-to-Action Button */}
-                <TouchableOpacity style={styles.adoptButton}
-                                  onPress={()=> {
-                                      router.push(`/chat?ownerEmail=${encodeURIComponent(pet.owner)}`);
-                }}>
+                <TouchableOpacity
+                    style={styles.adoptButton}
+                    onPress={() => {
+                        if (pet.owner === (auth.currentUser).email) {
+                            router.push(`/edit-pet?petId=${encodeURIComponent(pet.id)}`);
+                        } else {
+                            router.push(`/chat?ownerEmail=${encodeURIComponent(pet.owner)}`);
+                        }
+                    }}
+                >
 
-
-                    <Text style={styles.adoptButtonText}>Adopt Me</Text>
+                    <Text style={styles.adoptButtonText}>
+                        {pet.owner === (auth.currentUser).email ? "Edit" : "Adopt Me"}
+                    </Text>
                 </TouchableOpacity>
             </View>
         </View>

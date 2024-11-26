@@ -24,8 +24,8 @@ export default function Register() {
     async function addToDB() {
         console.log("Adding user to DB...");
         try {
-            await setDoc(doc(db, "Users", email), {
-                email: email,
+            await setDoc(doc(db, "Users", email.toLowerCase()), {
+                email: email.toLowerCase(),
                 displayName: username,
             });
             console.log("User added to Firestore successfully");
