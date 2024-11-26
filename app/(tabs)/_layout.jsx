@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from './home';
 import Favorite from './favorite';
 import Profile from './profile';
+import AddPet from "./addPet";
 import Chat from './chat';
 import Colors from "../../assets/Colors";
 import { View, Text } from "react-native";
@@ -68,6 +69,35 @@ export default function TabLayout() {
                     ),
                 }}
             />
+
+            <Tab.Screen
+                name="AddPet"
+                component={AddPet}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View
+                            style={{
+                                alignItems: "center",
+                                justifyContent: "center",
+                                backgroundColor: focused ? Colors.primary : Colors.light_pink,
+                                height: 60,
+                                width: 60,
+                                borderRadius: 50,
+                                marginBottom: 35, // above the navbar
+                            }}
+                        >
+                            <Ionicons
+                                name={focused ? "add-circle" : "add-circle-outline"}
+                                color={focused ? Colors.light_pink : Colors.white}
+                                size={32}
+                            />
+                        </View>
+                    ),
+                }}
+            />
+
+
+
             <Tab.Screen
                 name="Chat"
                 component={Chat}

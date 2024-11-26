@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="chat screen if the user == owner">
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="profile screen">
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/addPet.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/favorite.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/favorite.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +102,7 @@
       <workItem from="1732391924283" duration="10033000" />
       <workItem from="1732473664858" duration="1311000" />
       <workItem from="1732519063140" duration="3385000" />
-      <workItem from="1732610999255" duration="15049000" />
+      <workItem from="1732610999255" duration="18449000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -179,7 +181,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732639509991</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="profile screen">
+      <created>1732644141509</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732644141509</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +217,7 @@
     <MESSAGE value="login and register - connect to firebase + logout" />
     <MESSAGE value="chat screen" />
     <MESSAGE value="chat screen if the user == owner" />
-    <option name="LAST_COMMIT_MESSAGE" value="chat screen if the user == owner" />
+    <MESSAGE value="profile screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="profile screen" />
   </component>
 </project>
