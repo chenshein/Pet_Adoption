@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import {View, Text, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Image, TextInput,} from 'react-native';
+import {View, Text, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Image, TextInput,Alert} from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { auth } from "../../config/FirebaseConfig";
+import { auth,db } from "../../config/FirebaseConfig";
 import { getCategories } from "../../shared/shared";
 import Colors from "../../assets/Colors";
 import { Ionicons } from '@expo/vector-icons';
+import {addDoc, collection, doc, updateDoc} from "firebase/firestore";
 
 export default function AddPet() {
     const [categories, setCategories] = useState([]);
 
     const [owner, setOwner] = useState('');
-    const [petName, setPetName] = useState(null);
+    const [petName, setPetName] = useState('');
     const [category, setCategory] = useState('');
     const [breed, setBreed] = useState('');
     const [age, setAge] = useState('');
@@ -32,8 +33,41 @@ export default function AddPet() {
     }, []);
 
     function handleSavePet(){
-        //TODO handle save : save to db and router to Home\ pet detail
+        if (!petName || !category || !breed || !age || !gender || !weight || !about) {
+            console.log("empty")
+            Alert.alert("Missing Information ⚠️", "Please make sure you have filled in all the fields!");
+        }
+        else {
+            addPetToDB();
+            console.log("Pet added to db ! ")
+        }
     }
+
+
+    async function addPetToDB(){
+        try {
+            const docRef = await addDoc(collection(db, "Pets"), {
+                petName: petName,
+                category: category,
+                breed: breed,
+                age: age,
+                gender: gender,
+                weight: weight,
+                about: about,
+                owner: owner,
+                //TODO img!!!!
+            });
+            console.log("Document written with ID: ", docRef.id);
+            const petDocID = docRef.id;
+            await updateDoc(doc(db, "Pets", petDocID), {
+                id: petDocID
+            });
+        }catch (err) {
+            console.error(err)
+            Alert.alert("Can't save pet ", "Problem in saving the pet, try again");
+        }
+    }
+
 
     return (
         <View style={styles.container}>
