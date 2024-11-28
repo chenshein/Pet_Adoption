@@ -6,6 +6,8 @@ import { getCategories } from "../../shared/shared";
 import Colors from "../../assets/Colors";
 import { Ionicons } from '@expo/vector-icons';
 import {addDoc, collection, doc, updateDoc} from "firebase/firestore";
+import * as ImagePicker from "expo-image-picker";
+import {useNavigation} from "@react-navigation/native";
 
 export default function AddPet() {
     const [categories, setCategories] = useState([]);
@@ -18,9 +20,13 @@ export default function AddPet() {
     const [gender, setGender] = useState('');
     const [weight, setWeight] = useState('');
     const [about, setAbout] = useState('');
+    const [img, setImg] = useState('');
 
     const [isCategoryPickerVisible, setCategoryPickerVisible] = useState(false);
     const [isGenderPickerVisible, setGenderPickerVisible] = useState(false);
+
+    const navigation = useNavigation();
+
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -32,6 +38,18 @@ export default function AddPet() {
         setOwner(petOwner);
     }, []);
 
+
+    const resetFields = () => {
+        setPetName('');
+        setCategory('');
+        setBreed('');
+        setAge('');
+        setGender('');
+        setWeight('');
+        setAbout('');
+        setImg(null); // Reset the image as well
+    };
+
     function handleSavePet(){
         if (!petName || !category || !breed || !age || !gender || !weight || !about) {
             console.log("empty")
@@ -40,6 +58,17 @@ export default function AddPet() {
         else {
             addPetToDB();
             console.log("Pet added to db ! ")
+            resetFields();
+            Alert.alert("Pet added!🐾", "Would you like to return to the homepage or add another pet?",
+                [
+                    {
+                        text: "Home 🏠",  onPress: ()=> navigation.navigate('Home')
+                    },
+                    {
+                        text: "Add new pet 🐇", onPress: ()=> navigation.navigate('AddPet')
+                    }
+                ])
+
         }
     }
 
@@ -47,7 +76,7 @@ export default function AddPet() {
     async function addPetToDB(){
         try {
             const docRef = await addDoc(collection(db, "Pets"), {
-                petName: petName,
+                name: petName,
                 category: category,
                 breed: breed,
                 age: age,
@@ -55,7 +84,7 @@ export default function AddPet() {
                 weight: weight,
                 about: about,
                 owner: owner,
-                //TODO img!!!!
+                imgURL: img
             });
             console.log("Document written with ID: ", docRef.id);
             const petDocID = docRef.id;
@@ -68,6 +97,22 @@ export default function AddPet() {
         }
     }
 
+
+    const pickImage = async () => {
+        // No permissions request is necessary for launching the image library
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ['images'],
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+        console.log("after")
+        if(!result.canceled){
+            setImg(result.assets[0].uri);
+            console.log(result.assets[0].uri)
+        }
+
+    }
 
     return (
         <View style={styles.container}>
@@ -83,11 +128,16 @@ export default function AddPet() {
 
                 {/* Img*/}
                 <View style={styles.imageContainer}>
-                    <TouchableOpacity style={styles.imageUploadContainer}>
-                        <Image
+                    <TouchableOpacity style={styles.imageUploadContainer} onPress={pickImage}>
+                        {!img ? <Image
                             style={styles.profileImage}
                             source={require('../../assets/images/default-avatar-icon.jpg')}
-                        />
+                        /> :
+                            <Image
+                                style={styles.profileImage}
+                                source={{uri:img}}
+                            />
+                        }
                         <View style={styles.cameraIconContainer}>
                             <Text>📷</Text>
                         </View>
@@ -131,7 +181,7 @@ export default function AddPet() {
                                     setCategory(itemValue);
                                     setCategoryPickerVisible(false);
                                 }}
-
+                                style={{backgroundColor:Colors.darkPurple, borderRadius:10}}
                             >
                                 <Picker.Item label="Select a category" value="" />
                                 {categories.map((category) => (
@@ -159,7 +209,7 @@ export default function AddPet() {
                     <View style={styles.rowContainer}>
                         {/* age*/}
                         <View style={styles.halfInputGroup}>
-                            <Text style={styles.label}>Age</Text>
+                            <Text style={styles.label}>Age (in Years)</Text>
                             <View style={styles.inputContainer}>
                                 <TextInput
                                     placeholderTextColor={Colors.lightGray}
@@ -190,8 +240,9 @@ export default function AddPet() {
                                         setGender(itemValue);
                                         setGenderPickerVisible(false);
                                     }}
-
+                                    style={{backgroundColor:Colors.darkPurple, borderRadius:10}}
                                 >
+                                    <Picker.Item label="Select a category" value="" />
                                     <Picker.Item label="Male" value="Male" />
                                     <Picker.Item label="Female" value="Female" />
                                 </Picker>
@@ -201,7 +252,7 @@ export default function AddPet() {
 
                     {/* weight */}
                     <View style={styles.inputGroup}>
-                        <Text style={styles.label}>Weight</Text>
+                        <Text style={styles.label}>Weight (in Kg)</Text>
                         <View style={styles.inputContainer}>
                             <Ionicons name="scale-outline" size={20} color={Colors.darkGrey} style={styles.inputIcon} />
                             <TextInput
@@ -325,14 +376,6 @@ const styles = StyleSheet.create({
         paddingTop: 12,
     },
 
-    pickerContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: Colors.white,
-        borderRadius: 12,
-        zIndex: 10,
-    },
-
     pickerInside: {
         justifyContent: 'flex-start',
         gap:30,
@@ -344,6 +387,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: Colors.white,
     },
+
+
     rowContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',

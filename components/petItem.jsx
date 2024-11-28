@@ -76,7 +76,7 @@ export default function PetItem({ pet }) {
                             />
                             <Text style={styles.detailText}>{pet.gender}</Text>
                         </View>
-                        <Text style={styles.detailText}>{pet.age}</Text>
+                        <Text style={styles.detailText}>{pet.age} Years</Text>
                     </View>
                 </View>
             </View>

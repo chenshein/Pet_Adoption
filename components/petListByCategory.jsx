@@ -45,15 +45,7 @@ export default function PetListByCategory() {
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: 20,
-        paddingTop: 20,
     },
-    //
-    // text: {
-    //     fontFamily: 'outfit-medium',
-    //     fontSize: 30,
-    //     marginBottom: 10,
-    //     marginTop: 20
-    // },
 
     listContent: {
         paddingHorizontal: 10,

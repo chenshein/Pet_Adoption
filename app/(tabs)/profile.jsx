@@ -35,8 +35,7 @@ export default function ProfileScreen() {
     }
 
     function handleAddNewPet() {
-        //TODO add pet page
-        console.log("Add new pet clicked");
+        navigation.navigate('AddPet')
     }
 
     return (

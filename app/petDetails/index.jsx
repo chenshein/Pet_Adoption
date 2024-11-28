@@ -42,7 +42,7 @@ export default function PetDetails() {
                     </View>
                     {/*  Weight */}
                     <View style={[styles.infoItem, { backgroundColor: '#F0F0FF' }]}>
-                        <Text style={styles.detailTextPet}>{pet.weight}</Text>
+                        <Text style={styles.detailTextPet}>{pet.weight} Kg</Text>
                         <Text style={styles.detailText}>Weight</Text>
                     </View>
                 </View>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, StyleSheet, Button, TouchableOpacity, Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Button, TouchableOpacity, Image} from 'react-native';
 import { auth } from '../config/FirebaseConfig';
 import {useRouter} from "expo-router";
 import Colors from "../assets/Colors";
@@ -8,9 +8,13 @@ import {Ionicons} from "@expo/vector-icons";
 export default function Header() {
     const router = useRouter();
     const [currentUser,setCurrentUser]=useState('')
+    const [profileImage, setProfileImage] = useState('');
+
     useEffect(()=>{
         const user = auth.currentUser;
         setCurrentUser(user.displayName);
+        setProfileImage(user.photoURL);
+
     },);
     function handleLogout() {
         auth.signOut()
@@ -25,40 +29,60 @@ export default function Header() {
 
     return (
         <View style={styles.headerRow}>
-            <Text  style={styles.welcomeText}> Welcome, {currentUser}</Text>
-            <TouchableOpacity style= {styles.btn} onPress={handleLogout} >
-                <Ionicons name="log-out-outline" size={25} color={'white'} style={{marginLeft:3}}></Ionicons>
+            {profileImage ? (
+                <Image source={{ uri: profileImage }} style={styles.profileImg} />
+            ) : (
+                <Ionicons name="person-circle-outline" size={40} color='#404549' />
+            )}
+            <View>
+                <Text style={styles.welcomeText}>Welcome,</Text>
+                <Text style={styles.userName}>  {currentUser}</Text>
+            </View>
+            <TouchableOpacity style={styles.btn} onPress={handleLogout}>
+                <Ionicons name="log-out-outline" size={25} color="white" style={styles.logoutIcon} />
             </TouchableOpacity>
-
         </View>
     );
 }
 
-const styles =StyleSheet.create({
+const styles = StyleSheet.create({
     headerRow: {
-        flexDirection: "row",
-        justifyContent: 'space-between',
+        flexDirection: 'row',
+        backgroundColor: Colors.white,
+        padding: 15,
+        borderRadius: 10,
         alignItems: 'center',
-        marginHorizontal: 10,
+    },
+    profileImg: {
+        width: 60,
+        height: 60,
+        borderRadius: 30,
+        marginRight: 10,
+        marginLeft:15,
+        marginTop: 30,
     },
     welcomeText: {
-        fontFamily: 'outfit-bold',
+        fontFamily: 'outfit',
         fontSize: 30,
-        marginBottom: 20,
-        marginTop: 10,
+        marginTop: 30,
         color: Colors.darkGrey,
     },
+    userName:{
+        fontFamily: 'outfit',
+        fontSize: 14,
+        color:Colors.lightGray
+    },
     btn: {
-        marginRight:10,
+        marginLeft:90,
         backgroundColor: Colors.darkBlue,
         borderRadius: 20,
         paddingVertical: 10,
         paddingHorizontal: 10,
+        marginTop: 30,
+
     },
-    btnText: {
-        color: 'white', // White text on dark background
-        fontSize: 13,
-        fontFamily: 'outfit-medium', // Font weight
-        textAlign: 'center', // Center align text inside the button
-    }
+
+    logoutIcon: {
+        marginLeft: 3,
+    },
 });
