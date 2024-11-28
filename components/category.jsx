@@ -3,6 +3,7 @@ import {View, Text, StyleSheet, Image, FlatList, TouchableOpacity} from 'react-n
 import { db } from '../config/FirebaseConfig';
 import Colors from "../assets/Colors";
 import { useNavigation } from '@react-navigation/native';
+import {getCategories} from "../shared/shared";
 
 export default function CategoriesList({category}) {
     const [categoriesList, setCategoriesList] = useState([]);
@@ -10,22 +11,28 @@ export default function CategoriesList({category}) {
     const navigation = useNavigation();
 
     useEffect(() => {
-        getCategories();
+        const fetchCategories = async () => {
+            const categoriesData = await getCategories();
+            console.log(categoriesData);
+            setCategoriesList(categoriesData);
+            console.log(categoriesList)
+        };
+        fetchCategories();
         handlePress(selectedCategory)
     }, []);
 
-    async function getCategories() {
-        try {
-            const categories = [];
-            const querySnapshot = await db.collection("Category").get();
-            querySnapshot.forEach((doc) => {
-                categories.push(doc.data());
-            });
-            setCategoriesList(categories);
-        } catch (error) {
-            console.error("Error accessing Firestore:", error);
-        }
-    }
+    // async function getCategories() {
+    //     try {
+    //         const categories = [];
+    //         const querySnapshot = await db.collection("Category").get();
+    //         querySnapshot.forEach((doc) => {
+    //             categories.push(doc.data());
+    //         });
+    //         setCategoriesList(categories);
+    //     } catch (error) {
+    //         console.error("Error accessing Firestore:", error);
+    //     }
+    // }
 
     function handlePress(name) {
         setSelectedCategory(name);
