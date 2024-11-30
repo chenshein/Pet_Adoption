@@ -45,7 +45,7 @@ export default function Register() {
             await setDoc(doc(db, "Users", email.toLowerCase()), {
                 email: email.toLowerCase(),
                 displayName: username,
-                userImg: userImg,
+                photoURL: userImg,
             });
         } catch (error) {
             console.error("Error adding user to DB:", error);

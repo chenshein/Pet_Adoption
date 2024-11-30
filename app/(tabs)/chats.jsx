@@ -22,7 +22,7 @@ export default function ChatsScreen() {
         if (auth.currentUser) {
             fetchChatsAndUsers();
         }
-    }, [auth.currentUser]);
+    }, );
 
     const fetchChatsAndUsers = async () => {
         try {

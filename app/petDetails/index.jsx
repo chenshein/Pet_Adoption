@@ -22,6 +22,7 @@ export default function PetDetails() {
     async function deletePet(){
         await deleteDoc(doc(db, "Pets", pet.id));
         console.log("pet deleted")
+        router.push('/home')
     }
 
 

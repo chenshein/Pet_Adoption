@@ -17,7 +17,7 @@ export default function Favorite() {
             setCurrUser(user.email);
             fetchFavorites(user.email);
         }
-    }, []);
+    }, );
 
     // fetch a pet by id
     async function fetchPet(petId) {

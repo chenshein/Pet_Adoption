@@ -13,6 +13,7 @@ export default function ProfileScreen() {
     useEffect(()=>{
         const currUser= auth.currentUser;
         setUser(currUser)
+        console.log("checkkk",user.photoURL)
     },[])
 
     function handleLogout() {
@@ -45,14 +46,14 @@ export default function ProfileScreen() {
             <View style={styles.profileContainer}>
                 <Image
                     style={styles.profileImg}
-                    source={require('../../assets/images/default-avatar-icon.jpg')}
+                    source={{uri: user.photoURL}}
                 />
                 <View style={styles.infoContainer}>
                     <Text style={styles.displayName}>
-                        {user?.displayName || "Guest User"}
+                        {user.displayName}
                     </Text>
                     <Text style={styles.email}>
-                        {user?.email || "guest@example.com"}
+                        {user.email}
                     </Text>
                 </View>
             </View>

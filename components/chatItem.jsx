@@ -4,6 +4,7 @@ import {Image, Text, TouchableOpacity, View,StyleSheet} from "react-native";
 import Colors from "../assets/Colors";
 import {Link, useRouter} from "expo-router";
 import {useNavigation} from "@react-navigation/native";
+import {getUserByEmail} from "../shared/shared";
 
 import Chat from "../app/chat"
 
@@ -11,18 +12,32 @@ import Chat from "../app/chat"
 export default function ChatItem({chat}) {
     const router = useRouter();
     const navigation = useNavigation();
+    const [user,setUser]= useState('')
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const fetchedUser = await getUserByEmail(chat.otherUserEmail);
+                setUser(fetchedUser);
+                console.log(fetchedUser.photoURL);
+            } catch (error) {
+                console.error("Error fetching user:", error);
+            }
+        };
+
+        fetchUser();
+    }, [chat.otherUserEmail]);
 
     function handleChatPress() {
         const otherUser = chat.otherUserEmail
         router.push(`/chat?ownerEmail=${otherUser}`);
-
     }
 
     return(
         <TouchableOpacity style={styles.chatItem} onPress={handleChatPress}>
             <Image
                 style={styles.userImg}
-                source={require('../assets/images/default-avatar-icon.jpg')}
+                source={{ uri: user.photoURL }}
             />
             <View>
                 <Text style={styles.chatUserName}>{chat.otherUserName}</Text>

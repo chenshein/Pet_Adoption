@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useLayoutEffect} from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import {
     View,
     Text,
@@ -7,146 +7,255 @@ import {
     TouchableOpacity,
     Image,
     Keyboard,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    ScrollView,
+    Alert,
+    Platform
 } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import { useRouter } from 'expo-router';
-import {auth, db} from "../../config/FirebaseConfig";
+import { db } from "../../config/FirebaseConfig";
 import Colors from "../../assets/Colors";
-import {doc, updateDoc} from "firebase/firestore";
-import {useNavigation} from "@react-navigation/native";
+import { doc, updateDoc } from "firebase/firestore";
+import { useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/Ionicons";
-
-import { KeyboardAvoidingView, Platform } from 'react-native';
-
+import { KeyboardAvoidingView } from 'react-native';
+import * as ImagePicker from "expo-image-picker";
 
 export default function EditPage() {
     const { pet } = useLocalSearchParams();
     const router = useRouter();
     const navigation = useNavigation();
 
-    const [petData, setPetData] = useState(pet ? JSON.parse(decodeURIComponent(pet)) : {});
-
-    useEffect(() => {
-        if (pet) {
-            const petObj =JSON.parse(decodeURIComponent(pet))
-            setPetData(petObj);
+    const [petData, setPetData] = useState(() => {
+        try {
+            return pet ? JSON.parse(decodeURIComponent(pet)) : {};
+        } catch (error) {
+            console.error("Error parsing pet data:", error);
+            return {};
         }
-    }, [pet]);
+    });
+
+    const [imageUri, setImageUri] = useState(petData.imgURL || null);
+
     useLayoutEffect(() => {
         navigation.setOptions({ headerShown: false });
     }, [navigation]);
 
-    async function saveUpdateToDB() {
-        const docRef = doc(db, "Pets", petData.id);
+    const pickImage = async () => {
+        // Request permission
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+            Alert.alert(
+                "Permission Needed",
+                "Sorry, we need camera roll permissions to make this work!"
+            );
+            return;
+        }
 
-        await updateDoc(docRef, {
-            age: petData.age,
-            about: petData.about,
-            weight : petData.weight,
-            imgURL: petData.imgURL
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
         });
 
-    }
-    function handleSave(){
-        console.log("update:", petData);
-        saveUpdateToDB();
-        router.replace({ pathname: '/petDetails', params: petData })
+        if (!result.canceled) {
+            const selectedUri = result.assets[0].uri;
+            setImageUri(selectedUri);
+        }
+    };
 
-    }
+    const saveUpdateToDB = async () => {
+        try {
+            // Reference to the specific pet document
+            const docRef = doc(db, "Pets", petData.id);
+
+            // Update document with new data
+            await updateDoc(docRef, {
+                age: petData.age,
+                about: petData.about,
+                weight: petData.weight,
+                //  update imgURL if it different
+                ...(imageUri !== petData.imgURL && { imgURL: imageUri })
+            });
+
+            return true;
+        } catch (error) {
+            console.error("Error updating pet:", error);
+            Alert.alert(
+                "Update Error",
+                "Could not save changes. Please try again."
+            );
+            return false;
+        }
+    };
+
+    // Handle Save Action
+    const handleSave = async () => {
+        const updateSuccessful = await saveUpdateToDB();
+        if (updateSuccessful) {
+            router.replace({
+                pathname: '/petDetails',
+                params: {
+                    ...petData,
+                    imgURL: imageUri,
+                    age: petData.age,
+                    about: petData.about,
+                    weight: petData.weight
+                }
+            });
+        }
+    };
 
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false} >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <KeyboardAvoidingView
-                style={{ flex: 1 ,backgroundColor:Colors.white}}
+                style={{ flex: 1, backgroundColor: Colors.white }}
                 behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-                keyboardVerticalOffset={50}>
-                <View style={styles.container}>
-                    <View style={styles.header}>
-                        <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
-                            <Icon name="arrow-back" size={30} color='#C400FF' />
-                        </TouchableOpacity>
-                    </View>
-
-                    {/* Image Section */}
-                    <View style={styles.imgContainer}>
-                        <Image
-                            source={{ uri: petData.imgURL }}
-                            style={styles.petImage}
-                            resizeMode="cover"
-                        />
-                    </View>
-
-                    {/* Pet Details */}
-                    <View style={styles.petDetails}>
-                        {/* Pet's name and breed */}
-                        <View style={styles.headerPet}>
-                            <Text style={styles.petName}>{petData.name}</Text>
-                            <Text style={styles.petBreed}>{petData.breed}</Text>
+                keyboardVerticalOffset={50}
+            >
+                <ScrollView
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    keyboardShouldPersistTaps="handled"
+                >
+                    <View style={styles.container}>
+                        {/* Back Button */}
+                        <View style={styles.header}>
+                            <TouchableOpacity
+                                style={styles.backButton}
+                                onPress={() => router.back()}
+                            >
+                                <Icon name="arrow-back" size={30} color={Colors.primary} />
+                            </TouchableOpacity>
                         </View>
 
-                        {/* Info Row */}
-                        <View style={styles.infoRow}>
-                            {/*  Gender */}
-                            <View style={[styles.infoItem, { backgroundColor: '#E7F4F8' }]}>
-                                <Text style={styles.detailTextPet}>{petData.gender}</Text>
-                                <Text style={styles.detailText}>Sex</Text>
-                            </View>
-                            {/*  Age */}
-                            <View style={[styles.infoItem, { backgroundColor: '#FFF7EA' , borderWidth: 1, borderColor: '#B0B0B0', borderRadius: 10 }]}>
-                                <TextInput
-                                    style={styles.detailTextPet}
-                                    value={petData.age}
-                                    keyboardType="numeric"
-                                    placeholder="Enter Age"
-                                    onChangeText={(text) => setPetData({ ...petData, age: text })}
-                                />
-                                <Text style={styles.detailText}>Age</Text>
-                            </View>
-                            {/*  Weight */}
-                            <View style={[styles.infoItem, { backgroundColor: '#F0F0FF', borderWidth: 1, borderColor: '#B0B0B0', borderRadius: 10 }]}>
-                                <TextInput
-                                    style={[styles.detailTextPet, { paddingLeft: 10 }]}
-                                    value={petData.weight}
-                                    keyboardType="numeric"
-                                    onChangeText={(text) => setPetData({ ...petData, weight: text })}
-                                    placeholder="Enter weight"
-                                />
-                                <Text style={styles.detailText}>Weight</Text>
-                            </View>
-                        </View>
-
-                        {/*About*/}
-                        <View style={styles.aboutContainer}>
-                            <Text style={styles.aboutName}>About {petData.name},</Text>
-                            <TextInput
-                                style={[styles.aboutText, { paddingLeft: 10, borderWidth: 1, borderColor: '#B0B0B0', borderRadius: 10 }]}
-                                value={petData.about}
-                                onChangeText={(text) => setPetData({ ...petData, about: text })}
-                                placeholder="Edit description"
-                                multiline
+                        {/* Image Section */}
+                        <View style={styles.imgContainer}>
+                            <Image
+                                source={{ uri: imageUri }}
+                                style={styles.petImage}
+                                resizeMode="cover"
                             />
+                            <TouchableOpacity
+                                style={styles.editImageButton}
+                                onPress={pickImage}
+                            >
+                                <Icon name="pencil" size={24} color="white" />
+                            </TouchableOpacity>
                         </View>
 
+                        {/* Pet Details */}
+                        <View style={styles.petDetails}>
+                            {/* Pet Name and Breed */}
+                            <View style={styles.headerPet}>
+                                <Text style={styles.petName}>{petData.name}</Text>
+                                <Text style={styles.petBreed}>{petData.breed}</Text>
+                            </View>
 
-                        <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-                            <Text style={styles.saveButtonText}>
-                                Save Changes
-                            </Text>
-                        </TouchableOpacity>
+                            {/* Info Row */}
+                            <View style={styles.infoRow}>
+                                {/* Gender */}
+                                <View style={[styles.infoItem, { backgroundColor: '#E7F4F8' }]}>
+                                    <Text style={styles.detailTextPet}>{petData.gender}</Text>
+                                    <Text style={styles.detailText}>Sex</Text>
+                                </View>
+
+                                {/* Age */}
+                                <View style={[
+                                    styles.infoItem,
+                                    {
+                                        backgroundColor: '#FFF7EA',
+                                        borderWidth: 1,
+                                        borderColor: '#B0B0B0',
+                                        borderRadius: 10
+                                    }
+                                ]}>
+                                    <TextInput
+                                        style={styles.detailTextPet}
+                                        value={petData.age}
+                                        keyboardType="numeric"
+                                        placeholder="Enter Age"
+                                        onChangeText={(text) =>
+                                            setPetData({ ...petData, age: text })
+                                        }
+                                    />
+                                    <Text style={styles.detailText}>Age</Text>
+                                </View>
+
+                                {/* Weight */}
+                                <View style={[
+                                    styles.infoItem,
+                                    {
+                                        backgroundColor: '#F0F0FF',
+                                        borderWidth: 1,
+                                        borderColor: '#B0B0B0',
+                                        borderRadius: 10
+                                    }
+                                ]}>
+                                    <TextInput
+                                        style={[styles.detailTextPet, { paddingLeft: 10 }]}
+                                        value={petData.weight}
+                                        keyboardType="numeric"
+                                        onChangeText={(text) =>
+                                            setPetData({ ...petData, weight: text })
+                                        }
+                                        placeholder="Enter weight"
+                                    />
+                                    <Text style={styles.detailText}>Weight</Text>
+                                </View>
+                            </View>
+
+                            {/* About Section */}
+                            <View style={styles.aboutContainer}>
+                                <Text style={styles.aboutName}>
+                                    About {petData.name},
+                                </Text>
+                                <TextInput
+                                    style={[
+                                        styles.aboutText,
+                                        {
+                                            paddingLeft: 10,
+                                            borderWidth: 1,
+                                            borderColor: '#B0B0B0',
+                                            borderRadius: 10
+                                        }
+                                    ]}
+                                    value={petData.about}
+                                    onChangeText={(text) =>
+                                        setPetData({ ...petData, about: text })
+                                    }
+                                    placeholder="Edit description"
+                                    multiline
+                                />
+                            </View>
+
+                            {/* Save Button */}
+                            <TouchableOpacity
+                                style={styles.saveButton}
+                                onPress={handleSave}
+                            >
+                                <Text style={styles.saveButtonText}>
+                                    Save Changes
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                </View>
+                </ScrollView>
             </KeyboardAvoidingView>
         </TouchableWithoutFeedback>
-
     );
 }
 
+// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-
+    header: {
+        position: 'relative',
+        zIndex: 10,
+    },
     backButton: {
         position: 'absolute',
         top: 50,
@@ -161,15 +270,27 @@ const styles = StyleSheet.create({
     },
     imgContainer: {
         width: '100%',
-        height: '40%',
+        height: 300,
         borderBottomLeftRadius: 30,
         borderBottomRightRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
+        position: 'relative',
     },
     petImage: {
         width: '100%',
         height: '100%',
+    },
+    editImageButton: {
+        position: 'absolute',
+        bottom: 20,
+        right: 20,
+        backgroundColor: Colors.darkGrey,
+        borderRadius: 25,
+        width: 50,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     petDetails: {
         flex: 1,
@@ -180,24 +301,24 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     headerPet: {
-        gap:3,
-        marginTop:10,
+        gap: 3,
+        marginTop: 10,
         marginBottom: 10,
-        marginLeft:10
+        marginLeft: 10,
     },
     petName: {
         fontFamily: 'outfit-bold',
         fontSize: 27,
     },
-    petBreed:{
+    petBreed: {
         fontFamily: 'outfit',
-        color: Colors.lightGray
+        color: Colors.lightGray,
     },
     infoRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 15,
-        marginBottom:15
+        marginBottom: 15,
     },
     infoItem: {
         flex: 1,
@@ -206,32 +327,29 @@ const styles = StyleSheet.create({
         paddingVertical: 12,
         marginHorizontal: 12,
         borderRadius: 15,
-        gap:2
+        gap: 2,
     },
-    detailTextPet:{
+    detailTextPet: {
         fontFamily: 'outfit-medium',
         fontSize: 17,
     },
-    detailText:{
+    detailText: {
         fontFamily: 'outfit',
         fontSize: 14,
-        color:Colors.lightGray
-
+        color: Colors.lightGray,
     },
-    aboutContainer:{
-        gap:5,
+    aboutContainer: {
+        gap: 5,
     },
-    aboutName:{
+    aboutName: {
         fontFamily: 'outfit-medium',
-        fontSize:19,
-
+        fontSize: 19,
     },
-    aboutText:{
+    aboutText: {
         fontFamily: 'outfit',
-        fontSize:15
-
+        fontSize: 15,
+        minHeight: 100,
     },
-
     saveButton: {
         marginTop: 25,
         backgroundColor: Colors.primary,
@@ -243,7 +361,6 @@ const styles = StyleSheet.create({
     saveButtonText: {
         fontFamily: 'outfit-bold',
         fontSize: 24,
-        color: '#FFFFFF',
+        color: Colors.white,
     },
 });
-
