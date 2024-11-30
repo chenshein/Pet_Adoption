@@ -32,7 +32,7 @@ export default function Header() {
             {profileImage ? (
                 <Image source={{ uri: profileImage }} style={styles.profileImg} />
             ) : (
-                <Ionicons name="person-circle-outline" size={40} color='#404549' />
+                <Image source={require("../assets/images/default-avatar-icon.jpg")} style={styles.profileImg} />
             )}
             <View>
                 <Text style={styles.welcomeText}>Welcome,</Text>

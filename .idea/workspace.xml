@@ -4,18 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="add pet page- add image">
-      <change afterPath="$PROJECT_DIR$/assets/images/favicon.png" afterDir="false" />
+    <list default="true" id="7c2cba2d-c421-4eeb-9e8e-89a1a1df8dd5" name="Changes" comment="add image in register and update header in home page">
+      <change afterPath="$PROJECT_DIR$/app/(tabs)/chats.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/edit/index.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/chatItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/addPet.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/addPet.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/chat.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/chat.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(tabs)/home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/chat.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(tabs)/profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/profile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/loginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/loginPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/petDetails/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/petDetails/index.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/registerPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/registerPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Colors.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/Colors.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/petItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petItem.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/petListByCategory.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/petListByCategory.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -63,11 +64,11 @@
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\components" />
+      <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\components\Inbox" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\assets\images" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption" />
       <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app" />
-      <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\app\petDetails" />
-      <recent name="C:\Users\User\OneDrive\שולחן העבודה\חן פרויקטים\pet_adoption\components" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -112,7 +113,8 @@
       <workItem from="1732391924283" duration="10033000" />
       <workItem from="1732473664858" duration="1311000" />
       <workItem from="1732519063140" duration="3385000" />
-      <workItem from="1732610999255" duration="51546000" />
+      <workItem from="1732610999255" duration="52686000" />
+      <workItem from="1732872051737" duration="20931000" />
     </task>
     <task id="LOCAL-00001" summary="Home page and init project">
       <created>1731788082551</created>
@@ -219,7 +221,14 @@
       <option name="project" value="LOCAL" />
       <updated>1732800492842</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add image in register and update header in home page">
+      <created>1732822493956</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1732822493956</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,6 +262,7 @@
     <MESSAGE value="add pet page" />
     <MESSAGE value="add pet-  update add to db without img" />
     <MESSAGE value="add pet page- add image" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pet page- add image" />
+    <MESSAGE value="add image in register and update header in home page" />
+    <option name="LAST_COMMIT_MESSAGE" value="add image in register and update header in home page" />
   </component>
 </project>

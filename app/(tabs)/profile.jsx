@@ -31,7 +31,7 @@ export default function ProfileScreen() {
     }
 
     function handleChats(){
-        navigation.navigate('Chat')
+        navigation.navigate('Chats')
     }
 
     function handleAddNewPet() {

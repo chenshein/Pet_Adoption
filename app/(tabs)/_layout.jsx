@@ -4,7 +4,7 @@ import Home from './home';
 import Favorite from './favorite';
 import Profile from './profile';
 import AddPet from "./addPet";
-import Chat from './chat';
+import Chat from './chats';
 import Colors from "../../assets/Colors";
 import { View, Text } from "react-native";
 
@@ -99,7 +99,7 @@ export default function TabLayout() {
 
 
             <Tab.Screen
-                name="Chat"
+                name="Chats"
                 component={Chat}
                 options={{
                     tabBarIcon: ({ focused }) => (

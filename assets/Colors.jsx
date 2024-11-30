@@ -9,11 +9,7 @@ const Colors = {
     darkGrey: '#404549',
 
 
-    success: '#f0e4fa',
-    danger: '#DC3545',
-    warning: '#FFC107',
-    light: '#F8F9FA',
-    dark: '#343A40',
+
 
 
 };

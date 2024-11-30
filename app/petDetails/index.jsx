@@ -1,17 +1,42 @@
-import React, { useEffect } from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions} from 'react-native';
+import React, {useEffect, useLayoutEffect} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Image, Dimensions, ScrollView, Alert} from 'react-native';
 import {useLocalSearchParams} from "expo-router";
-import {Ionicons} from "@expo/vector-icons";
 import Colors from "../../assets/Colors";
 import { useRouter } from 'expo-router';
-import {auth} from "../../config/FirebaseConfig";
+import {auth, db} from "../../config/FirebaseConfig";
+import {useNavigation} from "@react-navigation/native";
+import Icon from "react-native-vector-icons/Ionicons";
+import {deleteDoc, doc} from "firebase/firestore";
 
 export default function PetDetails() {
     const pet = useLocalSearchParams();
     const router = useRouter();
+    const navigation = useNavigation();
+
+
+    useLayoutEffect(() => {
+        navigation.setOptions({ headerShown: false });
+    }, [navigation]);
+
+
+    async function deletePet(){
+        await deleteDoc(doc(db, "Pets", pet.id));
+        console.log("pet deleted")
+    }
+
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}
+                    contentContainerStyle={styles.scrollViewContent}
+                    showsVerticalScrollIndicator={true}
+                    keyboardShouldPersistTaps="handled">
+            <View>
+                <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
+                    <Icon name="arrow-back" size={30} color='#C400FF' />
+                </TouchableOpacity>
+            </View>
+
+
             {/* Image Section */}
             <View style={styles.imgContainer}>
                 <Image
@@ -52,41 +77,83 @@ export default function PetDetails() {
                     <Text style={styles.aboutName}>About {pet.name},</Text>
                     <Text style={styles.aboutText}>{pet.about}</Text>
                 </View>
+                {/*Buttons*/}
+                <View>
+                    {pet.owner === auth.currentUser.email ? (
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity
+                                style={[styles.button, { backgroundColor:Colors.darkPurple },{marginTop:25}]}
+                                onPress={() => {
+                                    router.push(`/edit?pet=${encodeURIComponent(JSON.stringify(pet))}`);
+                                }}
+                            >
+                                <Text style={styles.buttonText}>Edit ✏️</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[styles.button, { backgroundColor: "red" }]}
+                                onPress={() => {
+                                    // Handle delete logic here
+                                    Alert.alert(
+                                        "Confirm Delete",
+                                        "Are you sure you want to delete this pet?",
+                                        [
+                                            { text: "Cancel", style: "cancel" },
+                                            { text: "Delete", onPress: deletePet },
+                                        ]
+                                    );
+                                }}
+                            >
+                                <Text style={styles.buttonText}>Delete 🗑️</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ) : (
+                        // If the current user doesn't own the pet, show the Chat button
+                        <TouchableOpacity
+                            style={[styles.button, { backgroundColor:Colors.darkPurple },{marginTop:25}]}
+                            onPress={() => {
+                                router.push(`/chat?ownerEmail=${encodeURIComponent(pet.owner)}`);
+                            }}
+                        >
+                            <Text style={styles.buttonText}>Chat 💬</Text>
+                        </TouchableOpacity>
+                    )}
+                </View>
 
-                {/* Call-to-Action Button */}
-                <TouchableOpacity
-                    style={styles.adoptButton}
-                    onPress={() => {
-                        if (pet.owner === (auth.currentUser).email) {
-                            router.push(`/edit-pet?petId=${encodeURIComponent(pet.id)}`);
-                        } else {
-                            router.push(`/chat?ownerEmail=${encodeURIComponent(pet.owner)}`);
-                        }
-                    }}
-                >
-
-                    <Text style={styles.adoptButtonText}>
-                        {pet.owner === (auth.currentUser).email ? "Edit" : "Adopt Me"}
-                    </Text>
-                </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     );
 }
 
-const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
-        flex: 4,
+        flex: 1,
+        backgroundColor:Colors.white
+    },
+    scrollViewContent: {
+        flexGrow: 1,
+        paddingBottom: 50,
+    },
+    backButton: {
+        position: 'absolute',
+        top: 50,
+        left: 20,
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: Colors.white,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 10,
     },
     imgContainer: {
-        width: '100%',
-        height: '40%',
+        width: Dimensions.get('window').width,
+        height: Dimensions.get('window').height * 0.4,
         borderBottomLeftRadius: 30,
         borderBottomRightRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
     },
+
     petImage: {
         width: '100%',
         height: '100%',
@@ -152,19 +219,24 @@ const styles = StyleSheet.create({
 
     },
 
+    buttonContainer: {
+        justifyContent: "space-between",
+        gap:5
 
 
-    adoptButton: {
-        marginTop: 25,
-        backgroundColor: Colors.primary,
-        paddingVertical: 15,
-        borderRadius: 25,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
-    adoptButtonText: {
-        fontFamily: 'outfit-bold',
-        fontSize: 24,
-        color: '#FFFFFF',
+    button: {
+
+        paddingVertical: 10,
+        padding: 10,
+        borderRadius: 10,
+    },
+
+    buttonText: {
+        fontFamily: 'outfit',
+        color: Colors.white,
+        fontSize: 20,
+        textAlign: "center",
     },
 });
+

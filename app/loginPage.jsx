@@ -4,7 +4,7 @@ import {
     TextInput,
     TouchableOpacity,
     Image,
-    StyleSheet,
+    StyleSheet, Platform, Keyboard, KeyboardAvoidingView, TouchableWithoutFeedback,
 } from 'react-native';
 import React, { useState } from 'react';
 import Colors from '../assets/Colors';
@@ -42,6 +42,11 @@ export default function LoginPage() {
     }
 
     return (
+        <KeyboardAvoidingView
+            style={styles.container}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        >
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <TouchableOpacity style={styles.backButton} onPress={() => router.back()}>
@@ -91,6 +96,8 @@ export default function LoginPage() {
                 </View>
             </View>
         </View>
+            </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
     );
 }
 
