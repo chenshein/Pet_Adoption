@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
+🐾 Animal Adoption App
+Welcome to the Animal Adoption App! This platform connects animal lovers with pets in need of a home. Whether you're looking to adopt a furry friend or help animals find loving families, our app makes the process simple and enjoyable.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+📱 Features
+User Authentication
+Log in: Access your account securely.
+Register: Create a new account to get started.
+Log out: Sign out of your account when you're done.
+Manage Animals
+Upload Animals: Share animals for adoption, organized by category (e.g., dogs, cats, birds).
+Edit Animal Details: Update information about the animals you've uploaded.
+Delete Animals: Remove animals no longer available for adoption.
+Explore Animals
+Browse Animals: View all animals available for adoption, complete with details and photos.
+Mark as Favorite: Keep track of animals you're interested in adopting.
+Contact Owners
+Message Owners: Directly reach out to the owners of animals you're interested in adopting via text.
+🐕 Animal Profile Details
+Each animal profile includes:
 
-## Get started
+Name: The animal's name.
+Gender: Male or female.
+Breed: The animal's breed.
+About: A short description of the animal.
+Height: The animal's height.
+Weight: The animal's weight.
+Age: The animal's age.
+Picture: A clear image of the animal.
+💡 How to Use the App
+Sign Up or Log In
 
-1. Install dependencies
+Create an account or log in to your existing account.
+Upload Animals
 
-   ```bash
-   npm install
-   ```
+Use the upload feature to add animals for adoption. Fill in the required fields and upload a picture.
+Browse Animals
 
-2. Start the app
+Explore available animals by category. Check out their profiles to learn more.
+Mark Favorites
 
-   ```bash
-    npx expo start
-   ```
+Keep track of animals you like by marking them as favorites.
+Contact Owners
 
-In the output, you'll find options to open the app in a
+If you're ready to adopt, send a message directly to the owner.
+Manage Your Listings
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Edit or delete animals you've uploaded as needed.
+🚀 Getting Started
+Prerequisites
+mobile device
+Internet connection 
+Same WiFi connection for your computer and phone
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Installation
+install "Expo Go" in your phone
+run npx expo start 
+than scan the barcode and open the app :)
