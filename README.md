@@ -36,6 +36,12 @@ Each animal profile includes:
  - **Age:** The animal's age.
  - **Picture:** A clear image of the animal.
 
+## 🛠 Key Technologies
+
+-   **React Native**: The framework used to build the mobile app.
+-   **Expo**: A toolchain for building React Native apps quickly.
+-   **Firebase**: For user authentication and storing animal profiles.
+
 ## 🚀 Getting Started
 **Prerequisites**
 
