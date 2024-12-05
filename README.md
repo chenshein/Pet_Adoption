@@ -52,6 +52,6 @@ Each animal profile includes:
 ## Installation
 
  - install "Expo Go" in your phone
- - run `npx expo start`
+ - run `expo start`
 
  - than scan the barcode and open the app 🦜
